@@ -1,0 +1,19 @@
+<h1>Summary of all Transaction Categories</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% results.map(item => {%>
+            <tr>
+               <td> <%= item._id.category %> </td>
+               <td><%= item.total %></td>
+            </tr>
+            
+            <% }) %>
+
+    </tbody>
+</table>
