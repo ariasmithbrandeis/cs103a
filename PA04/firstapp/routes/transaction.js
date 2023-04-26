@@ -103,17 +103,10 @@ router.get('/transaction/byCategory',
       let results =
             await TransactionItem.aggregate(
                 [ 
-                  {$group:{
-                    _id: "$category",
-                    total:{$sum: "$amount"}
-                    }},             
+                  {$match:{userId: req.user._id}},
+                  {$group:{ _id: "$category",total:{$sum: "$amount"} }
+                  }             
                 ])
-              
-        results = 
-           await TransactionItem.populate(results,
-                   {path:'_id',
-                   select:['category']})
-
         //res.json(results)
         res.render('summarizeByCategory',{results})
 });
